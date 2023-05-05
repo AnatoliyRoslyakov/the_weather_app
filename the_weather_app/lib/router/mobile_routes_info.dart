@@ -8,8 +8,6 @@ import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';
 
 class MobileRoutesInfo implements AbstractRoutesInfo {
-  final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey();
-
 //первоначальная страница
   @override
   String get initialRoute => MobileRoutes.login.path;
