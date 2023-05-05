@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 
 //конструктор имени и ссылки на страницу
 enum MobileRoutes {
+  threeDays,
   detail,
   login;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_weather_app/ui/pages/detail_page.dart';
+import 'package:the_weather_app/ui/pages/three_days_info_page.dart';
 
 import '../ui/pages/login_page.dart';
 import 'abstract_routes_info.dart';
@@ -24,6 +25,11 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.detail.path,
           name: MobileRoutes.detail.name,
           builder: (context, state) => DetailPage(),
+        ),
+        GoRoute(
+          path: MobileRoutes.threeDays.path,
+          name: MobileRoutes.threeDays.name,
+          builder: (context, state) => ThreeDaysInfoPage(),
         ),
       ];
 }
