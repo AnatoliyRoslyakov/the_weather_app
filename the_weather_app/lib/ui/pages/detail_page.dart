@@ -4,6 +4,7 @@ import 'package:the_weather_app/domain/bloc/weather_bloc.dart';
 import 'package:the_weather_app/domain/bloc/weather_state.dart';
 import '../widgets/app_bar_widget.dart';
 import '../widgets/city_info_widget.dart';
+import '../widgets/detail_info_widget.dart';
 import '../widgets/temp_info_widget.dart';
 import 'login_page.dart';
 
@@ -23,6 +24,7 @@ class DetailPage extends StatelessWidget {
             children: [
               CityInfoWidget(state: state),
               TempInfoWidget(state: state),
+              DetailInfoWidget(state: state)
             ],
           ),
         );
