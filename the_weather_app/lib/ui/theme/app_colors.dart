@@ -8,5 +8,6 @@ class AppColors {
   static const textUnselected = Colors.black38;
   static const defaultColor1 = Colors.white;
   static const defaultColor2 = Colors.grey;
-  static const defaultColor3 = Colors.blue;
+  static const defaultColor3 = Color.fromARGB(255, 91, 130, 175);
+  static const defaultColor4 = Colors.red;
 }

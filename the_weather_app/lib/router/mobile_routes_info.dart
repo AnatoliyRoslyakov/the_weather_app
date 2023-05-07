@@ -17,7 +17,9 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
         GoRoute(
           path: MobileRoutes.login.path,
           name: MobileRoutes.login.name,
-          builder: (context, state) => LoginPage(),
+          builder: (context, state) => LoginPage(
+            error: '',
+          ),
         ),
         GoRoute(
           path: MobileRoutes.detail.path,
