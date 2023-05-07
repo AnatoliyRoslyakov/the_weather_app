@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_weather_app/ui/theme/app_colors.dart';
 import 'package:the_weather_app/ui/theme/app_text.dart';
 
 import '../../constant/url.dart';

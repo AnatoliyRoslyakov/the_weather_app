@@ -19,11 +19,16 @@ class DetailPage extends StatelessWidget {
       }
       if (state is WeatherLoadedState) {
         return Scaffold(
-          appBar: AppBarWidget(),
+          appBar: AppBarWidget(
+            state: state,
+          ),
           body: Column(
             children: [
+              const SizedBox(height: 15),
               CityInfoWidget(state: state),
+              const SizedBox(height: 15),
               TempInfoWidget(state: state),
+              const SizedBox(height: 15),
               DetailInfoWidget(state: state)
             ],
           ),
