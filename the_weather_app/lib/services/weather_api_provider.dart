@@ -20,7 +20,7 @@ class WeatherApiProvider {
     log('request: ${uri.toString()}');
     try {
       var respons = await http.get(uri);
-      print('respons: ${respons.body}');
+      //print('respons: ${respons.body}');
 
       if (respons.statusCode == 200) {
         final weatherJson = json.decode(respons.body);
@@ -29,7 +29,7 @@ class WeatherApiProvider {
         throw Exception('Error');
       }
     } catch (e) {
-      print(e);
+      //print(e);
       throw Exception('Error');
     }
   }

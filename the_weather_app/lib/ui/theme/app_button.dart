@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
+// ignore: must_be_immutable
 class AppButton extends StatelessWidget {
   AppButton(
       {Key? key,

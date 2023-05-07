@@ -13,9 +13,10 @@ class DetailInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var pressure = state.loadedWeather[0].list![0].pressure! * 0.750062;
-    var humidity = state.loadedWeather[0].list![0].humidity!;
-    var speed = state.loadedWeather[0].list![0].speed!;
+    var list = state.loadedWeather[0].list![0];
+    var pressure = list.pressure! * 0.750062;
+    var humidity = list.humidity!;
+    var speed = list.speed!;
     return Container(
       width: 360,
       decoration: BoxDecoration(
@@ -27,6 +28,7 @@ class DetailInfoWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: [
+            // ignore: deprecated_member_use
             FormatDetailItem.getItem(FontAwesomeIcons.thermometerThreeQuarters,
                 pressure.round(), 'mm Hg'),
             FormatDetailItem.getItem(FontAwesomeIcons.cloudRain, humidity, '%'),

@@ -10,22 +10,21 @@ class CityInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var list = state.loadedWeather[0].list![0];
     var city = state.loadedWeather[0].city!.name;
     var country = state.loadedWeather[0].city!.country;
-    var time = state.loadedWeather[0].list![0].dt!;
+    var time = list.dt!;
     var dateTime = DateTime.fromMillisecondsSinceEpoch(time * 1000);
-    return Container(
-      child: Column(children: [
-        AppText(
-          text: '${city}, ${country}',
-          size: 30,
-        ),
-        AppText(
-          text: '${FormatDateTime.getFormatDate(dateTime)}',
-          size: 18,
-          weight: 1,
-        ),
-      ]),
-    );
+    return Column(children: [
+      AppText(
+        text: '$city, $country',
+        size: 30,
+      ),
+      AppText(
+        text: FormatDateTime.getFormatDate(dateTime),
+        size: 18,
+        weight: 1,
+      ),
+    ]);
   }
 }

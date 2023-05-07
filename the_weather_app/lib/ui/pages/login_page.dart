@@ -7,6 +7,7 @@ import 'package:the_weather_app/domain/bloc/weather_event.dart';
 import 'package:the_weather_app/ui/theme/app_button.dart';
 import '../theme/app_colors.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key, required this.error});
   final String error;
@@ -19,7 +20,7 @@ class LoginPage extends StatelessWidget {
     }
 
     // Проверяем, что значение содержит только буквы
-    final RegExp regex = RegExp(r'^[a-zA-Zа-яА-Я]+$');
+    final RegExp regex = RegExp(r'^[- .a-zA-Zа-яА-Я]+$');
     if (!regex.hasMatch(value)) {
       return 'Please enter a valid name';
     }
@@ -50,7 +51,7 @@ class LoginPage extends StatelessWidget {
               TextFormField(
                 controller: textController,
                 validator: _validateName,
-                maxLength: 30,
+                maxLength: 40,
                 keyboardType: TextInputType.text,
                 inputFormatters: [
                   FilteringTextInputFormatter.singleLineFormatter

@@ -37,7 +37,7 @@ class DetailPage extends StatelessWidget {
       if (state is WeatherErrorState) {
         return LoginPage(error: 'City not found');
       }
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     });
   }
 }

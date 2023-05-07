@@ -13,13 +13,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   });
 
   final WeatherLoadedState state;
+  @override
   Size get preferredSize => const Size.fromHeight(200);
   final bool threeDays;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color.fromARGB(0, 255, 255, 255),
-      shadowColor: Color.fromARGB(0, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+      shadowColor: const Color.fromARGB(0, 255, 255, 255),
       centerTitle: true,
       title: AppText(
         text: threeDays ? 'Weather 3 days' : 'Weather',
@@ -36,7 +37,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   fit: BoxFit.fill))),
       actions: [
         threeDays
-            ? SizedBox.shrink()
+            ? const SizedBox.shrink()
             : IconButton(
                 onPressed: () {
                   context.go('/threeDays', extra: state);
