@@ -21,15 +21,17 @@ class WeatherApiProvider {
     try {
       var respons = await http.get(uri);
       //print('respons: ${respons.body}');
-
+      // проверка статуса ответа
       if (respons.statusCode == 200) {
         final weatherJson = json.decode(respons.body);
+        // список моделей погоды, полученных из джейсон-ответа.
         return [WeatherModel.fromJson(weatherJson)];
       } else {
         throw Exception('Error');
       }
     } catch (e) {
       //print(e);
+      // исключение при ошибочном статусе ответа
       throw Exception('Error');
     }
   }

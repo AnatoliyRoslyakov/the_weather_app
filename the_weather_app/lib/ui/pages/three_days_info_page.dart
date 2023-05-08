@@ -53,21 +53,15 @@ class ThreeDaysInfoPage extends StatelessWidget {
                           size: 15,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       AppText(
                         text:
                             '${sortedListList[index].temp!.day!.toStringAsFixed(0)} °C',
                         size: 40,
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       const Divider(),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         mainAxisSize: MainAxisSize.max,

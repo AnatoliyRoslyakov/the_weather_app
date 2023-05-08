@@ -1,8 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:the_weather_app/models/weather_model.dart';
 
 abstract class WeatherState {}
 
+// Состаяние загрузки
 class WeatherLoadingState extends WeatherState {
   String cityName;
   WeatherLoadingState({
@@ -10,9 +10,11 @@ class WeatherLoadingState extends WeatherState {
   });
 }
 
+// Состояние при котором данные загрузились
 class WeatherLoadedState extends WeatherState {
   List<WeatherModel> loadedWeather;
   WeatherLoadedState({required this.loadedWeather});
 }
 
+// Состояние ошибки при загрузке данных
 class WeatherErrorState extends WeatherState {}

@@ -15,10 +15,12 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // для перестройки пользовательского интерфейса используется виджет:
     return BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
       if (state is WeatherLoadingState) {
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       }
+      // проходимся по состояниям
       if (state is WeatherLoadedState) {
         return Scaffold(
           appBar: AppBarWidget(
@@ -36,10 +38,13 @@ class DetailPage extends StatelessWidget {
           ),
         );
       }
+      // состояние ошибки от апи, тут проверю состояние интернета
       if (state is WeatherErrorState) {
         return BlocBuilder<ConnectivityCubit, ConnectivityResult>(
             builder: (context, stateConn) {
           if (stateConn == ConnectivityResult.none) {
+            // не хочу выходить за строницу Login поэтому со всеми ошибками
+            // отправляю туда
             return LoginPage(
               error: 'No internet connection',
             );

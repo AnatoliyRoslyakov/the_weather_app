@@ -5,10 +5,11 @@ import 'abstract_routes_info.dart';
 import 'mobile_routes_info.dart';
 
 class AppRouter {
+  // Ключ корневого навигатора
   static final GlobalKey<NavigatorState> rootNavigatorKey =
       GlobalKey<NavigatorState>();
 
-//конструктор навигации
+// "конструктор" навигации
   GoRouter router() {
     final AbstractRoutesInfo routesInfo = MobileRoutesInfo();
     return GoRouter(

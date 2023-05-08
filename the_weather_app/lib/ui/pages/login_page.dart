@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
     }
 
     // Проверяем, что значение содержит только буквы
-    final RegExp regex = RegExp(r'^[- .a-zA-Zа-яА-Я]+$');
+    final RegExp regex = RegExp(r"^[-' .a-zA-Zа-яА-Я]+$");
     if (!regex.hasMatch(value)) {
       return 'Please enter a valid name';
     }

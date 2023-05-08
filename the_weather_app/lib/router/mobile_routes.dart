@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
-//конструктор имени и ссылки на страницу
+//"конструктор" имени и ссылки на страницу
 enum MobileRoutes {
   threeDays,
   detail,

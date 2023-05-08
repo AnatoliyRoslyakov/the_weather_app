@@ -7,11 +7,13 @@ import 'package:the_weather_app/services/weather_repository.dart';
 class WeatherBloc extends Bloc<WeatherLoadEvent, WeatherState> {
   final WeatherRepository weatherRepository;
   WeatherBloc({required this.weatherRepository})
+      // Первоначальное состояние
       : super(WeatherLoadingState(cityName: '')) {
     on<WeatherLoadEvent>((event, emit) async {
       emit(WeatherLoadingState(cityName: event.cityName));
 
       try {
+        // Загрузка данных о погоде из репозитория
         final List<WeatherModel> loadedWeatherList =
             await weatherRepository.getWeather(cityName: event.cityName);
         emit(WeatherLoadedState(loadedWeather: loadedWeatherList));
