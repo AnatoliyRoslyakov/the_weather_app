@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:the_weather_app/domain/bloc/weather_bloc.dart';
-import 'package:the_weather_app/domain/bloc/weather_event.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_bloc.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_event.dart';
 import 'package:the_weather_app/ui/theme/app_button.dart';
 import '../theme/app_colors.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key, required this.error});
+  LoginPage({super.key, required this.error, this.internet = true});
   final String error;
+  final bool internet;
   TextEditingController textController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _validateName(String? value) {
@@ -83,7 +85,7 @@ class LoginPage extends StatelessWidget {
               Text(
                 error,
                 style: const TextStyle(color: AppColors.defaultColor4),
-              )
+              ),
             ]),
           ),
         ),

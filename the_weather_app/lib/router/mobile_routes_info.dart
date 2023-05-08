@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:the_weather_app/ui/pages/detail_page.dart';
 import 'package:the_weather_app/ui/pages/three_days_info_page.dart';
 
-import '../domain/bloc/weather_state.dart';
+import '../domain/bloc_api/weather_state.dart';
 import '../ui/pages/login_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';

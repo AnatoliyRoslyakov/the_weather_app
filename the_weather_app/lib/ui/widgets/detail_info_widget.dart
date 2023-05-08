@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:the_weather_app/constant/format_detail_item.dart';
 
-import '../../domain/bloc/weather_state.dart';
+import '../../domain/bloc_api/weather_state.dart';
 import '../theme/app_colors.dart';
 
 class DetailInfoWidget extends StatelessWidget {

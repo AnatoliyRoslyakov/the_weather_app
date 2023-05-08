@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_weather_app/domain/bloc/weather_event.dart';
-import 'package:the_weather_app/domain/bloc/weather_state.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_event.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_state.dart';
 import 'package:the_weather_app/models/weather_model.dart';
 import 'package:the_weather_app/services/weather_repository.dart';
 

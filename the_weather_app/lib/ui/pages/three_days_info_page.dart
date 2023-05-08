@@ -5,7 +5,7 @@ import 'package:the_weather_app/ui/widgets/app_bar_widget.dart';
 
 import '../../constant/format_date_time.dart';
 import '../../constant/format_detail_item.dart';
-import '../../domain/bloc/weather_state.dart';
+import '../../domain/bloc_api/weather_state.dart';
 import '../theme/app_colors.dart';
 
 class ThreeDaysInfoPage extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_weather_app/ui/theme/app_text.dart';
 
 import '../../constant/url.dart';
-import '../../domain/bloc/weather_state.dart';
+import '../../domain/bloc_api/weather_state.dart';
 
 class TempInfoWidget extends StatelessWidget {
   const TempInfoWidget({super.key, required this.state});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_weather_app/ui/theme/app_text.dart';
 
 import '../../constant/format_date_time.dart';
-import '../../domain/bloc/weather_state.dart';
+import '../../domain/bloc_api/weather_state.dart';
 
 class CityInfoWidget extends StatelessWidget {
   const CityInfoWidget({super.key, required this.state});

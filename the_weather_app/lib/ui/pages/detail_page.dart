@@ -1,7 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_weather_app/domain/bloc/weather_bloc.dart';
-import 'package:the_weather_app/domain/bloc/weather_state.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_bloc.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_state.dart';
+import 'package:the_weather_app/domain/cubit_connectivity/connectivity_cubit.dart';
 import '../widgets/app_bar_widget.dart';
 import '../widgets/city_info_widget.dart';
 import '../widgets/detail_info_widget.dart';
@@ -35,7 +37,18 @@ class DetailPage extends StatelessWidget {
         );
       }
       if (state is WeatherErrorState) {
-        return LoginPage(error: 'City not found');
+        return BlocBuilder<ConnectivityCubit, ConnectivityResult>(
+            builder: (context, stateConn) {
+          if (stateConn == ConnectivityResult.none) {
+            return LoginPage(
+              error: 'No internet connection',
+            );
+          }
+
+          return LoginPage(
+            error: 'City not found',
+          );
+        });
       }
       return const SizedBox.shrink();
     });
