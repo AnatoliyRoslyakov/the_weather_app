@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:the_weather_app/models/weather_model.dart';
 import 'package:the_weather_app/ui/pages/detail_page.dart';
 import 'package:the_weather_app/ui/pages/three_days_info_page.dart';
 
-import '../domain/bloc_api/weather_state.dart';
 import '../ui/pages/login_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';
@@ -24,13 +24,14 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
         GoRoute(
           path: MobileRoutes.detail.path,
           name: MobileRoutes.detail.name,
-          builder: (context, state) => const DetailPage(),
+          builder: (context, state) =>
+              DetailPage(model: state.extra as WeatherModel),
         ),
         GoRoute(
           path: MobileRoutes.threeDays.path,
           name: MobileRoutes.threeDays.name,
           builder: (context, state) =>
-              ThreeDaysInfoPage(state: state.extra as WeatherLoadedState),
+              ThreeDaysInfoPage(model: state.extra as WeatherModel),
         ),
       ];
 }

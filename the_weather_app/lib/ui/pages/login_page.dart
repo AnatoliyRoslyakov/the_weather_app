@@ -5,10 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_bloc.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_event.dart';
+import 'package:the_weather_app/domain/bloc_api/weather_state.dart';
 import 'package:the_weather_app/ui/theme/app_button.dart';
+import 'package:the_weather_app/ui/theme/app_text.dart';
 import '../theme/app_colors.dart';
 
-// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   LoginPage({super.key, required this.error, this.internet = true});
   final String error;
@@ -32,61 +33,87 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final WeatherBloc weatherBloc = BlocProvider.of<WeatherBloc>(context);
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text(
-                'Weather App',
-                style: TextStyle(
-                    color: AppColors.defaultColor3,
-                    fontWeight: FontWeight.w100,
-                    fontSize: 60),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                controller: textController,
-                validator: _validateName,
-                maxLength: 40,
-                keyboardType: TextInputType.text,
-                inputFormatters: [
-                  FilteringTextInputFormatter.singleLineFormatter
-                ],
-                decoration: const InputDecoration(
-                    labelText: 'Search',
-                    labelStyle: TextStyle(color: AppColors.defaultColor2),
-                    hintText: 'Moscow',
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide: BorderSide(color: AppColors.defaultColor2)),
-                    focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide: BorderSide(color: AppColors.defaultColor4)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide:
-                            BorderSide(color: AppColors.defaultColor3))),
-              ),
-              AppButton(
-                  text: 'GO',
-                  func: () {
-                    if (_formKey.currentState!.validate()) {
-                      weatherBloc
-                          .add(WeatherLoadEvent(cityName: textController.text));
-                      context.go('/detail');
-                    }
-                  }),
-              Text(
-                error,
-                style: const TextStyle(color: AppColors.defaultColor4),
-              ),
-            ]),
+    return BlocListener<WeatherBloc, WeatherState>(
+      listener: (context, state) {
+        if (state is WeatherErrorState) {
+          final snackBar = SnackBar(
+            content: Text(state.text),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          return;
+        }
+        if (state is WeatherLoadedState) {
+          context.go('/detail', extra: state.loadedWeather.first);
+        }
+      },
+      child: Scaffold(
+        body: Form(
+          key: _formKey,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Weather App',
+                      style: TextStyle(
+                          color: AppColors.defaultColor3,
+                          fontWeight: FontWeight.w100,
+                          fontSize: 60),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    TextFormField(
+                      controller: textController,
+                      validator: _validateName,
+                      maxLength: 40,
+                      keyboardType: TextInputType.text,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.singleLineFormatter
+                      ],
+                      decoration: const InputDecoration(
+                          labelText: 'Search',
+                          labelStyle: TextStyle(color: AppColors.defaultColor2),
+                          hintText: 'Moscow',
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide:
+                                  BorderSide(color: AppColors.defaultColor2)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide:
+                                  BorderSide(color: AppColors.defaultColor4)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              borderSide:
+                                  BorderSide(color: AppColors.defaultColor3))),
+                    ),
+                    BlocBuilder<WeatherBloc, WeatherState>(
+                        builder: (context, state) {
+                      return AppButton(
+                          child: state is WeatherEmptyState
+                              ? const AppText(text: 'GO', size: 15)
+                              : state is WeatherLoadingState
+                                  ? const SizedBox(
+                                      height: 30,
+                                      width: 30,
+                                      child: CircularProgressIndicator())
+                                  : const AppText(text: 'GO', size: 15),
+                          func: () {
+                            if (state is WeatherLoadingState) return;
+                            if (_formKey.currentState!.validate()) {
+                              weatherBloc.add(WeatherLoadEvent(
+                                  cityName: textController.text));
+                            }
+                          });
+                    }),
+                  ]),
+            ),
           ),
         ),
       ),

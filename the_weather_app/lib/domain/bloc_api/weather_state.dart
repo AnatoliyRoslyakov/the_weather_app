@@ -2,6 +2,8 @@ import 'package:the_weather_app/models/weather_model.dart';
 
 abstract class WeatherState {}
 
+class WeatherEmptyState extends WeatherState {}
+
 // Состаяние загрузки
 class WeatherLoadingState extends WeatherState {
   String cityName;
@@ -17,4 +19,9 @@ class WeatherLoadedState extends WeatherState {
 }
 
 // Состояние ошибки при загрузке данных
-class WeatherErrorState extends WeatherState {}
+class WeatherErrorState extends WeatherState {
+  final String text;
+  WeatherErrorState({
+    required this.text,
+  });
+}

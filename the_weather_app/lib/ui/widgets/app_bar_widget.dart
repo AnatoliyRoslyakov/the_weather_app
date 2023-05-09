@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../domain/bloc_api/weather_state.dart';
+import '../../models/weather_model.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text.dart';
 
@@ -9,10 +9,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
     super.key,
     this.threeDays = false,
-    required this.state,
+    required this.model,
   });
 
-  final WeatherLoadedState state;
+  final WeatherModel model;
   @override
   Size get preferredSize => const Size.fromHeight(200);
   final bool threeDays;
@@ -40,14 +40,16 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             ? const SizedBox.shrink()
             : IconButton(
                 onPressed: () {
-                  context.go('/threeDays', extra: state);
+                  context.go('/threeDays', extra: model);
                 },
                 icon: const Icon(Icons.navigate_next),
               ),
       ],
       leading: IconButton(
         onPressed: () {
-          threeDays ? context.go('/detail') : context.go('/login');
+          threeDays
+              ? context.go('/detail', extra: model)
+              : context.go('/login');
         },
         icon: const Icon(Icons.navigate_before),
       ),

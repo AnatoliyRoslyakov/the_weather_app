@@ -9,7 +9,7 @@ class AppButton extends StatelessWidget {
       this.backgroundColor = AppColors.defaultColor1,
       this.borderColor = AppColors.defaultColor2,
       this.overlayColor = AppColors.defaultColor3,
-      required this.text,
+      required this.child,
       this.textColor = AppColors.textSelected,
       required this.func})
       : super(key: key);
@@ -18,16 +18,14 @@ class AppButton extends StatelessWidget {
   Color? overlayColor;
   Color borderColor;
   Color textColor;
-  String text;
+
+  final Widget child;
   Function() func;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: func,
-      child: Text(
-        text,
-        style: TextStyle(color: textColor),
-      ),
+      child: child,
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all(const Size(100, 40)),
         backgroundColor: MaterialStateProperty.all(backgroundColor),

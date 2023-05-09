@@ -4,16 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:the_weather_app/constant/format_detail_item.dart';
 
-import '../../domain/bloc_api/weather_state.dart';
+import '../../models/weather_model.dart';
 import '../theme/app_colors.dart';
 
 class DetailInfoWidget extends StatelessWidget {
-  const DetailInfoWidget({super.key, required this.state});
-  final WeatherLoadedState state;
+  const DetailInfoWidget({super.key, required this.model});
+  final WeatherModel model;
 
   @override
   Widget build(BuildContext context) {
-    var list = state.loadedWeather[0].list![0];
+    var list = model.list![0];
     var pressure = list.pressure! * 0.750062;
     var humidity = list.humidity!;
     var speed = list.speed!;

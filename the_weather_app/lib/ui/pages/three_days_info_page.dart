@@ -5,18 +5,18 @@ import 'package:the_weather_app/ui/widgets/app_bar_widget.dart';
 
 import '../../constant/format_date_time.dart';
 import '../../constant/format_detail_item.dart';
-import '../../domain/bloc_api/weather_state.dart';
+import '../../models/weather_model.dart';
 import '../theme/app_colors.dart';
 
 class ThreeDaysInfoPage extends StatelessWidget {
-  const ThreeDaysInfoPage({super.key, required this.state});
+  const ThreeDaysInfoPage({super.key, required this.model});
 
-  final WeatherLoadedState state;
+  final WeatherModel model;
+
   @override
   Widget build(BuildContext context) {
     // список списков на  3 дня (считая с завтрашнего дня)
-    var list =
-        List.generate(3, (index) => state.loadedWeather[0].list![index + 1]);
+    var list = List.generate(3, (index) => model.list![index + 1]);
     // список температур на 3 дня
     var tempList = List.generate(3, (index) => list[index].temp!.day!);
     // список индексов сортированного списка температур
@@ -29,10 +29,10 @@ class ThreeDaysInfoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWidget(
         threeDays: true,
-        state: state,
+        model: model,
       ),
       body: ListView.builder(
-          itemCount: 3,
+          itemCount: list.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(10.0),

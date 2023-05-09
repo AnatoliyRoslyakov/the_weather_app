@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_bloc.dart';
-import 'package:the_weather_app/domain/cubit_connectivity/connectivity_cubit.dart';
 import 'package:the_weather_app/services/weather_repository.dart';
 
 import 'router/app_router.dart';
@@ -30,10 +29,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-                WeatherBloc(weatherRepository: weatherRepository)),
-        BlocProvider(
-            create: (_) => ConnectivityCubit(connectivity: connectivity)),
+            create: (context) => WeatherBloc(
+                weatherRepository: weatherRepository,
+                connectivity: connectivity)),
       ],
       child: MaterialApp.router(
         key: _appKey,

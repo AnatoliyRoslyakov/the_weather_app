@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:the_weather_app/ui/theme/app_text.dart';
 
 import '../../constant/url.dart';
-import '../../domain/bloc_api/weather_state.dart';
+import '../../models/weather_model.dart';
 
 class TempInfoWidget extends StatelessWidget {
-  const TempInfoWidget({super.key, required this.state});
+  const TempInfoWidget({super.key, required this.model});
 
-  final WeatherLoadedState state;
+  final WeatherModel model;
 
   @override
   Widget build(BuildContext context) {
-    var list = state.loadedWeather[0].list![0];
+    var list = model.list![0];
     var icon = list.weather![0].icon;
     String iconTemp = '${Url.weatherImageUrl}$icon';
-    var temp = list.temp!.day!.toStringAsFixed(0);
-    var tempMax = list.temp!.max!.toStringAsFixed(0);
-    var tempMin = list.temp!.min!.toStringAsFixed(0);
+    var temp = list.temp?.day?.toStringAsFixed(0); //////////?
+    var tempMax = list.temp?.max?.toStringAsFixed(0);
+    var tempMin = list.temp?.min?.toStringAsFixed(0);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
