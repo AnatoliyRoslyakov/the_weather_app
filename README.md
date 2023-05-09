@@ -24,7 +24,7 @@
 
 ### Remote [API](https://openweathermap.org/)
 * [http](https://pub.dev/packages/http)
-* [internet_connection_checker](https://pub.dev/packages/connectivity_plus)
+* [connectivity_plus](https://pub.dev/packages/connectivity_plus)
 
 ### Bloc / Cubit for state management
 * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
