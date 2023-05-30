@@ -1,10 +1,12 @@
 <h1 align="center">The Weather App</h1> 
 
 
+
+
 <h3 align="center">Screens</h3> 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/91376345/236950679-5692804d-219e-40d6-8df1-f692578e8f53.gif" alt="animated" />
+  <img src="https://github.com/AnatoliyRoslyakov/the_weather_app/assets/91376345/bed258e9-3c78-4bde-b154-0bd1b38f16ac.gif" alt="animated" />
 </p>
 
 
