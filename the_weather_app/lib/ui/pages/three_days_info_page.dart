@@ -18,13 +18,13 @@ class ThreeDaysInfoPage extends StatelessWidget {
     // список списков на  3 дня (считая с завтрашнего дня)
     var list = List.generate(3, (index) => model.list![index + 1]);
     // список температур на 3 дня
-    var tempList = List.generate(3, (index) => list[index].temp!.day!);
+    // var tempList = List.generate(3, (index) => list[index].temp!.day!);
     // список индексов сортированного списка температур
-    List<int> sortedIndices =
-        List<int>.generate(tempList.length, (index) => index)
-          ..sort((a, b) => tempList[a].compareTo(tempList[b]));
-    // сортированный список списков по температуре от меньшей к большей
-    List sortedListList = sortedIndices.map((index) => list[index]).toList();
+    // List<int> sortedIndices =
+    //     List<int>.generate(tempList.length, (index) => index)
+    //       ..sort((a, b) => tempList[a].compareTo(tempList[b]));
+    // // сортированный список списков по температуре от меньшей к большей
+    // List sortedListList = sortedIndices.map((index) => list[index]).toList();
 
     return Scaffold(
       appBar: AppBarWidget(
@@ -49,16 +49,37 @@ class ThreeDaysInfoPage extends StatelessWidget {
                         child: AppText(
                           text: FormatDateTime.getFormatDate(
                               DateTime.fromMillisecondsSinceEpoch(
-                                  sortedListList[index].dt! * 1000)),
+                                  list[index].dt! * 1000)),
                           size: 15,
                         ),
                       ),
                       const SizedBox(height: 10),
-                      AppText(
-                        text:
-                            '${sortedListList[index].temp!.day!.toStringAsFixed(0)} °C',
-                        size: 40,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AppText(
+                              text:
+                                  '${list[index].temp!.day!.toStringAsFixed(0)} °C',
+                              size: 40,
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppText(
+                                    text:
+                                        'max: ${list[index].temp?.max?.toStringAsFixed(0)} °C',
+                                    size: 15),
+                                AppText(
+                                    text:
+                                        'min: ${list[index].temp?.min?.toStringAsFixed(0)} °C',
+                                    size: 15)
+                              ],
+                            )
+                          ]),
                       const SizedBox(height: 10),
                       const Divider(),
                       const SizedBox(height: 10),
@@ -69,14 +90,13 @@ class ThreeDaysInfoPage extends StatelessWidget {
                           FormatDetailItem.getItem(
                               // ignore: deprecated_member_use
                               FontAwesomeIcons.thermometerThreeQuarters,
-                              (sortedListList[index].pressure.round() *
-                                      0.750062)
+                              (list[index].pressure!.round() * 0.750062)
                                   .toInt(),
                               'mm Hg'),
                           FormatDetailItem.getItem(FontAwesomeIcons.cloudRain,
-                              sortedListList[index].humidity, '%'),
+                              list[index].humidity!, '%'),
                           FormatDetailItem.getItem(FontAwesomeIcons.wind,
-                              sortedListList[index].speed.toInt(), 'm/s')
+                              list[index].speed!.toInt(), 'm/s')
                         ],
                       ),
                     ],

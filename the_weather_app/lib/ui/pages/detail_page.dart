@@ -23,7 +23,7 @@ class DetailPage extends StatelessWidget {
             const SizedBox(height: 15),
             TempInfoWidget(model: model),
             const SizedBox(height: 15),
-            DetailInfoWidget(model: model)
+            DetailInfoWidget(model: model),
           ],
         ),
       ),
