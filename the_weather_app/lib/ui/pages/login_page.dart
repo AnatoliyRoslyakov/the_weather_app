@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_bloc.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_event.dart';
 import 'package:the_weather_app/domain/bloc_api/weather_state.dart';
@@ -55,15 +56,23 @@ class LoginPage extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Weather App',
-                      style: TextStyle(
-                          color: AppColors.defaultColor3,
-                          fontWeight: FontWeight.w100,
-                          fontSize: 60),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Lottie.network(
+                            'https://assets9.lottiefiles.com/packages/lf20_dvik0gkn.json',
+                            height: 200),
+                        const Text(
+                          'Weather App',
+                          style: TextStyle(
+                              color: AppColors.defaultColor3,
+                              fontWeight: FontWeight.w100,
+                              fontSize: 60),
+                        ),
+                      ],
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     TextFormField(
                       controller: textController,
